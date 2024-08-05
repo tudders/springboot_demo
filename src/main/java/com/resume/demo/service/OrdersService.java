@@ -18,11 +18,8 @@ public class OrdersService {
         return ordersRepository.findByOrderUserId(userId);
     }
 
-    public void createUpdateRecord(Orders order) {
-        System.out.println(order.toString());
-        Object response = ordersRepository.save(order);
-        System.out.println(response.toString());
-
+    public Orders createUpdateRecord(Orders order) {
+        return ordersRepository.save(order);
     }
 
     public void deleteOrder(int orderId) {

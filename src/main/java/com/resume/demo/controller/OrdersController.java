@@ -29,9 +29,9 @@ public class OrdersController {
     }
 
     @PostMapping("/orders")
-    public void orders(@PathVariable("userid") String userId, @RequestBody Orders order) {
+    public Orders orders(@PathVariable("userid") String userId, @RequestBody Orders order) {
 
-        ordersService.createUpdateRecord(order);
+        return ordersService.createUpdateRecord(order);
     }
 
     @DeleteMapping("/order/{orderId}")
