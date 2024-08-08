@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.resume.demo.model.Orders;
+import com.resume.demo.model.Widgets;
 
 @Repository
-public interface OrdersRepository extends JpaRepository<Orders, Integer> {
-
-    List<Orders> findByOrderUserid(String orderUserid);
+public interface WidgetsRepository extends JpaRepository<Widgets, Integer> {
 
 }

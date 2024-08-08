@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.resume.demo.service.OrdersService;
 import com.resume.demo.model.Orders;
+import com.resume.demo.model.Widgets;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -24,20 +25,35 @@ public class OrdersController {
     private OrdersService ordersService;
 
     @GetMapping("/orders")
-    public List<Orders> orders(@PathVariable("userid") String userId) {
-        return ordersService.findAllOrdersByUser(userId);
+    public List<Orders> orders(@PathVariable("userid") String orderUserid) {
+        return ordersService.findAllOrdersByUser(orderUserid);
     }
 
     @PostMapping("/orders")
-    public Orders orders(@PathVariable("userid") String userId, @RequestBody Orders order) {
+    public Orders createUpdateOrder(@PathVariable("userid") String orderUserid, @RequestBody Orders order) {
 
         return ordersService.createUpdateRecord(order);
     }
 
     @DeleteMapping("/order/{orderId}")
-    public void orders(@PathVariable("orderId") int orderId) {
+    public void deleteOrder(@PathVariable("orderId") int orderId) {
 
         ordersService.deleteOrder(orderId);
+
+    }
+
+    @PostMapping("/orders/widget")
+    public Widgets createUpdateWidget(@RequestBody Widgets widget) {
+
+        return ordersService.createUpdateWidgetRecord(widget);
+
+    }
+
+    @DeleteMapping("/order/widget/{widgetId}")
+    public void deleteWidget(@PathVariable("widgetId") int widgetId) {
+
+        ordersService.deleteWidget(widgetId);
+
     }
 
 }

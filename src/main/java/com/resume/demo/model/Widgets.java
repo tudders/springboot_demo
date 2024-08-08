@@ -4,6 +4,9 @@ import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Temporal;
@@ -22,23 +25,28 @@ import lombok.Setter;
 @Setter
 @Entity
 
-@Table(catalog = "dbo", name = "widget", uniqueConstraints = { @UniqueConstraint(columnNames = "widgetGUID") })
+@Table(catalog = "dbo", name = "widgets", uniqueConstraints = { @UniqueConstraint(columnNames = "widgetGUID") })
 public class Widgets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int widgetId;
 
-    @Column(name = "widgetGUID", insertable = false, updatable = false)
-    private String widgetGUID;
+    @Column(updatable = false)
+    private String widgetGuid;
 
-    @Column(name = "orderId", nullable = false)
-    private String orderId;
+    private int orderIdfk;
 
-    @Column(name = "widgetText", columnDefinition = "TEXT")
     private String widgetText;
 
-    @Column(name = "widgetCreatedDateTime", nullable = false)
+    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date widgetCreatedDateTime = new Date();
+    private Date widgetCreateddatetime = new Date();
+
+    public void Widgets(String widgetText, int orderIdfk, String widgetGuid) {
+        this.widgetText = widgetText;
+        this.orderIdfk = orderIdfk;
+        this.widgetGuid = widgetGuid;
+    }
+
 }
