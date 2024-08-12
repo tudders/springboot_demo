@@ -1,6 +1,7 @@
 package com.resume.demo.model;
 
 import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -49,17 +50,26 @@ public class Orders {
 
     @Column(insertable = false, updatable = false)
     @Transient
-    @Temporal(TemporalType.DATE)
-    private Date orderCreateddatetime = new Date();
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime orderCreateddatetime;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "orderIdfk", insertable = false, updatable = false)
     private Collection<Widgets> widgets = new ArrayList<Widgets>();
 
-    public void Orders(String orderGuid, String orderText, String orderUserid) {
+    public Orders(String orderGuid, String orderText, String orderUserid) {
         this.orderUserid = orderUserid;
         this.orderText = orderText;
         this.orderGuid = orderGuid;
+    }
+
+    public Orders(int orderId, String orderUserId, String orderGuid, String orderText,
+            LocalDateTime orderCreateddatetime) {
+        this.orderId = orderId;
+        this.orderUserid = orderUserId;
+        this.orderText = orderText;
+        this.orderGuid = orderGuid;
+        this.orderCreateddatetime = orderCreateddatetime;
     }
 
 }

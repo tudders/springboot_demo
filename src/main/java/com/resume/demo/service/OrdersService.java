@@ -19,6 +19,10 @@ public class OrdersService {
     @Autowired
     private WidgetsRepository widgetsRepository;
 
+    public OrdersService(OrdersRepository ordersRepository) {
+        this.ordersRepository = ordersRepository;
+    }
+
     public List<Orders> findAllOrdersByUser(String userId) {
         return ordersRepository.findByOrderUserid(userId);
     }
