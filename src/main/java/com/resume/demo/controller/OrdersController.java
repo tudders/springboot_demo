@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.resume.demo.service.OrdersService;
 import com.resume.demo.model.Orders;
@@ -30,7 +31,13 @@ public class OrdersController {
     }
 
     @PostMapping("/orders")
-    public Orders createUpdateOrder(@PathVariable("userid") String orderUserid, @RequestBody Orders order) {
+    public Orders createOrder(@PathVariable("userid") String orderUserid, @RequestBody Orders order) {
+
+        return ordersService.createUpdateRecord(order);
+    }
+
+    @PutMapping("/orders")
+    public Orders updateOrder(@PathVariable("userid") String orderUserid, @RequestBody Orders order) {
 
         return ordersService.createUpdateRecord(order);
     }
@@ -43,7 +50,14 @@ public class OrdersController {
     }
 
     @PostMapping("/orders/widget")
-    public Widgets createUpdateWidget(@RequestBody Widgets widget) {
+    public Widgets createWidget(@RequestBody Widgets widget) {
+
+        return ordersService.createUpdateWidgetRecord(widget);
+
+    }
+
+    @PutMapping("/orders/widget")
+    public Widgets updateWidget(@RequestBody Widgets widget) {
 
         return ordersService.createUpdateWidgetRecord(widget);
 
